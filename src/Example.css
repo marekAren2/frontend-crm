@@ -1,0 +1,11 @@
+/* // moj styl dla obu example */
+.m-5 {
+    /* margin: 5px; */
+}
+
+.delete {
+    /* display: flexbox; */
+    /* flex-wrap: wrap; */
+    /* display: block; */
+    /* display: inline; */
+}
