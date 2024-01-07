@@ -66,7 +66,7 @@ const CustomersList = (props) => {
     <div className="container">
       {/* <h1>CustomerList component</h1> */}
       <Example_2 customers={customers} getCustomers={getCustomers} />
-      <Signup customers={customers} getCustomers={getCustomers} />
+      {/* <Signup customers={customers} getCustomers={getCustomers} /> */}
     </div>
   );
 };

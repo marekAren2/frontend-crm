@@ -81,7 +81,7 @@ const Signup = (props) => {
               {/* Dodaj console.log, aby sprawdzić, czy funkcja openList została wywołana */}
         {console.log('openList called')}
         {/* Użyj komponentu CustomersList i przekazuj mu customers jako props */}
-              <Print />
+              {/* <Print /> */}
             </div>
           )
         };
