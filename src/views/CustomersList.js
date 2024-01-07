@@ -2,10 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Example_2 from "./Example_2";
 import Form from "./Signup";
+// import {log} from './logger';
+import log from '../logger';
+import Signup from "./Signup";
 
-const Customers = () => {
+// const Customers = () => {
+// nie mialem props odbieranego, ale bledow nie bylo 
+const CustomersList = (props) => {
   const [customers, setCustomers] = useState({});
-  console.log("customers");
+  console.log("Poczatek komponentu customers", customers);
+  console.log('komunikat z log');
+
 
   // pamietaj o porcie i zrob config
   // axios.get('http://127.0.0.1/clients')
@@ -14,9 +21,9 @@ const Customers = () => {
     axios
       .get("http://127.0.0.1:3005/clients")
       .then((result) => {
-        //taki consol.log automatyczny z polem no change robi problem
+        //taki console.log automatyczny z polem no change robi problem
         // console.log("🚀 ~ file: CustomerList.js:7 ~ .then ~ result:", result)
-        console.log("funkcja getCustomers w srodku, result.data:", result.data);
+        console.log("f.getCustomers() w .then, result.data:", result.data);
         // console.log("🚀 ~ file: CustomersList.js:7 ~ .then ~ result:", result);
         // jeśli sukces
         // x getCustomers()
@@ -25,8 +32,8 @@ const Customers = () => {
         // tylko tablice z danymi nie obiekt potrzebuje
         setCustomers(result.data);
         // ^ ustawiam customers na result setterem zeby przekazac props do Example
-        console.log("po ustawieniu: customers w getCustomers()", customers);
-        console.log('aktualizacje stanu w React są asynchroniczne. Kiedy wywołujesz setCustomers(result.data), React nie aktualizuje stanu customers od razu. Dlatego, gdy logujesz customers bezpośrednio po wywołaniu getCustomers(), może on nadal pokazywać poprzedni stan,Aby zalogować zaktualizowany stan, możesz użyć hooka useEffect z customers jako zależnością:');
+        // console.log("po ustawieniu: customers w getCustomers()", customers);
+        // console.log('aktualizacje stanu w React są asynchroniczne. Kiedy wywołujesz setCustomers(result.data), React nie aktualizuje stanu customers od razu. Dlatego, gdy logujesz customers bezpośrednio po wywołaniu getCustomers(), może on nadal pokazywać poprzedni stan,Aby zalogować zaktualizowany stan, możesz użyć hooka useEffect z customers jako zależnością:');
         
 
         /*     {result.map((client) => {
@@ -43,29 +50,29 @@ const Customers = () => {
 
   useEffect(() => {
     getCustomers();
-    console.log("wyswietlam getCustomers: ", getCustomers());
-    console.log("wyswietlam customers: ", customers);
+    console.log("w useEffect[pusta - 1 raz po mount] wyswietlam getCustomers: ", getCustomers());
+    console.log("w useEffect[pusta - 1 raz po mount] wyswietlam customers: ", customers);
   }, []);
   // ^ pusta tablica zależności oznacza, że useEffect będzie uruchomiony tylko raz po zamontowaniu
 
   useEffect(() => {
     console.log(
-      "wyswietlam customers:w getCustomers() w useEffect() ",
+      "use Effect[customers] wyswietlam customers:w getCustomers() w useEffect() ",
       customers
     );
   }, [customers]);
 
   return (
     <div className="container">
-      <h1>React Component</h1>
-      {/* <Example_2 customers={customers} getCustomers={getCustomers} /> */}
-      <Form customers={customers} getCustomers={getCustomers} />
+      {/* <h1>CustomerList component</h1> */}
+      <Example_2 customers={customers} getCustomers={getCustomers} />
+      <Signup customers={customers} getCustomers={getCustomers} />
     </div>
   );
 };
 
 // tu dziala? tu jest nie zdefiniowana!
 // console.log('wyswietlam getCustomers: ', getCustomers());
-export default Customers;
+export default CustomersList;
 // tu tez.to gdzie ja moge uruchomic?
 // console.log('wyswietlam getCustomers: ', getCustomers());

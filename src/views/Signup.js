@@ -1,11 +1,15 @@
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import axios from 'axios';
 import { useState } from 'react';
-import Customers from './CustomersList';
+import CustomersList from './CustomersList';
+// import {log} from './logger';
+import log from '../logger';
+import Example_2 from './Example_2';
+import Print from './Print';
 
 
 
-const Form = (props) => {
+const Signup = (props) => {
         const [name, setName] = useState('');
         const [nip, setNip] = useState('');
         const [address, setAddress] = useState({city:'',street:''});
@@ -15,14 +19,37 @@ const Form = (props) => {
         const handleChangeName = (e) => {
           // setName({ name: e.target.value })
           setName(e.target.value);
+          
+          console.log("🚀 ~ file: Signup.js:21 ~ handleChangeName ~ e.target:", e.target);
+          // console.log(e.target.value);
+          console.log("🚀 ~ file: Signup.js:21 ~ handleChangeName ~ setName(e.target.value);:", e.target.value);
         }
+          
+
 
         const handleChangeNip = (e) => {
           // setName({ name: e.target.value })
           setNip(e.target.value);
         }
 
-        console.log(name,nip);
+        console.log('name,nip',name,nip);
+
+        const handleButtonCancel = () => {
+        console.log('klik');
+          return( <div></div>
+          )
+        };
+
+        const validationForm = (e) => {
+          e.preventDefault();
+        console.log('in validationForm()');
+        const newFirm = {
+          name: name,
+          nip: nip,        };
+        
+        saveFirm(newFirm)
+          
+        };
 
         const saveFirm = (firmObj) => {
           // console.log('eventObj',eventObj);
@@ -30,7 +57,7 @@ const Form = (props) => {
           axios.post('http://127.0.0.1:3005/clients',firmObj)
           // , {mode: 'cors'})
           .then((res) => {
-            // jeśli sukces zamieniamy consol.log na funkcje przekazana przez props
+            // jeśli sukces zamieniamy console.log na funkcje przekazana przez props
             
             console.log('res',res.data);
           })
@@ -42,16 +69,28 @@ const Form = (props) => {
       
           
         }
-
+        // do testu pozniej zastap handleButtonCancel
         const openList = () => {
-        // <Customers customers={customers}/>
+        
+        // <Customers />
         console.log('klikniete');
-          
+          return ( 
+            <div>
+              {/* <CustomersList customers={props.customers} /> */}
+              {/* <Example_2 customers={props.customers} /> */}
+              {/* Dodaj console.log, aby sprawdzić, czy funkcja openList została wywołana */}
+        {console.log('openList called')}
+        {/* Użyj komponentu CustomersList i przekazuj mu customers jako props */}
+              <Print />
+            </div>
+          )
         };
 
   return ( 
   
-<form onSubmit={saveFirm}>
+
+<form action="#" onSubmit={validationForm}>
+{/* <form action="#" onSubmit={saveFirm}> */}
       <div className="space-y-12 w-1/2">
  
 
@@ -62,6 +101,7 @@ const Form = (props) => {
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label htmlFor="firmName" className="block text-sm font-medium leading-6 text-gray-900">
+                {openList()}
                 Firm name *
               </label>
               <div className="mt-2">
@@ -192,4 +232,4 @@ const Form = (props) => {
   )
 };
 
-export default Form ;
+export default Signup ;

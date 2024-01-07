@@ -1,4 +1,7 @@
 import "./Example.css";
+// import {log} from './logger';
+import log from '../logger';
+
 const stats = [
   {
   id: 1,
@@ -118,6 +121,11 @@ export default function Example_2(props) {
     return mergedData;
   }
 
+  const handleButtonDelete = () => {
+    console.log('klik');
+      return( <div></div>
+      )
+    };
   // Przykład użycia funkcji
   const mergedDataArray = mergeData(props.customers, people);
   console.log("mergedDataArray", mergedDataArray);
@@ -196,7 +204,7 @@ export default function Example_2(props) {
                       className="mt-1 truncate text-xs leading-5 text-gray-500"
                       ml-
                     >
-                      {person.address.city + " ul. " + person.address.street}
+                      {person.address?.city + " ul. " + person.address?.street}
                     </p>
                     <p className="mt-1 truncate text-xs leading-5 text-gray-500">
                       {person.nip}
@@ -204,7 +212,8 @@ export default function Example_2(props) {
                   </div>
                 </div>
                 {/* <button className="Delete flex items-center">Delete</button> */}
-                <button className="Delete ml-10 btn btn-outline-danger">Delete</button>
+                <button 
+                onClick={handleButtonDelete} className="Delete ml-10 btn btn-outline-danger">Delete</button>
               </div>
             </div>
             <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">

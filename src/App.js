@@ -1,16 +1,17 @@
 
 import './App.css';
-import Customers from './CustomersList';
-import Example from './Example';
-import Example_2 from './Example_2';
-import Form from './Signup';
+import Customers from './views/CustomersList';
+import Example from './views/Example';
+import Example_2 from './views/Example_2';
+import Signup from './views/Signup';
+import Form from './views/Signup';
 
 function App() {
   return (
     <div className="App">
       <Customers/>
       {/* <Example_2/> */}
-      {/* <Form/>; */}
+      {/* <Signup/>; */}
     </div>
   );
 }
