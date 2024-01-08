@@ -1,6 +1,7 @@
 import "./Example.css";
 // import {log} from './logger';
 import log from '../logger';
+import Signup from "./Signup";
 
 const stats = [
   {
@@ -122,10 +123,19 @@ export default function Example_2(props) {
   }
 
   const handleButtonDelete = () => {
-    console.log('klik');
-      return( <div></div>
-      )
-    };
+    console.log("klik");
+    // return( <div></div>
+    // )
+  };
+
+  const handleButtonAdd = () => {
+  console.log('klikniete add Signup w return nie dziala');
+  <Signup/>
+  console.log('luzem w funkcji tez nie dziala');
+    return( <Signup/>
+    )
+  };
+  
   // Przykład użycia funkcji
   const mergedDataArray = mergeData(props.customers, people);
   console.log("mergedDataArray", mergedDataArray);
@@ -141,7 +151,7 @@ export default function Example_2(props) {
         // const customer = props.customers[name];
         const customer = props.customers[nip];
 
-        return customer
+        // return customer
           ? { name, nip: customer.nip, ...customer, ...fields }
           : null;
       })
@@ -150,7 +160,7 @@ export default function Example_2(props) {
     console.log(clients); // Wyświetlanie listy klientów w konsoli
 
     // Zwracanie listy klientów (lub inny komponent w przypadku renderowania na stronie)
-    return clients;
+    // return clients;
   }; */
   // blad
   // getCustomers();
@@ -248,7 +258,10 @@ export default function Example_2(props) {
           // </React.Fragment>
         ))}
       </ul>
-
+        {/* <div class="d-grid gap-2"> */}
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button onClick={handleButtonAdd} className=" btn btn-outline-primary addClient">Add client</button>        
+        </div>        
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">

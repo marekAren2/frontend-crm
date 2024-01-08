@@ -13,7 +13,7 @@ root.render(
     {/* <Router> */}
     <BrowserRouter>
       <App />
-      </BrowserRouter>
+    </BrowserRouter>
     {/* </Router> */}
 
   </React.StrictMode>

@@ -1,0 +1,17 @@
+.navMenu {
+    /* display: inline; */
+}
+
+.navMenu ul li {
+    display: inline-block;
+    /* // margin czy padding? */
+    /* padding: 15px; */
+    margin-left: 40px;
+    /* margin-left: auto; */
+    
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* align-items: center; */
+
+}
+
