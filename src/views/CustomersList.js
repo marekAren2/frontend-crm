@@ -11,7 +11,7 @@ import Signup from "./Signup";
 const CustomersList = (props) => {
   const [customers, setCustomers] = useState({});
   console.log("Poczatek komponentu customers", customers);
-  console.log('komunikat z log');
+  // console.log('komunikat z log');
 
 
   // pamietaj o porcie i zrob config
@@ -23,7 +23,7 @@ const CustomersList = (props) => {
       .then((result) => {
         //taki console.log automatyczny z polem no change robi problem
         // console.log("🚀 ~ file: CustomerList.js:7 ~ .then ~ result:", result)
-        console.log("f.getCustomers() w .then, result.data:", result.data);
+        console.log("axios f.getCustomers() w .then, result.data:", result.data);
         // console.log("🚀 ~ file: CustomersList.js:7 ~ .then ~ result:", result);
         // jeśli sukces
         // x getCustomers()
@@ -43,15 +43,16 @@ const CustomersList = (props) => {
       })
       .catch((err) => {
         /// obsługa błędów za pomocą funkcji anonimowej (err to parameter funkcji)
-        console.warn(err);
+        console.warn('error_axios:',err);
       });
   }
   // useEffect do uruchomienia getCustomers po zamontowaniu komponentu
 
   useEffect(() => {
     getCustomers();
-    console.log("w useEffect[pusta - 1 raz po mount] wyswietlam getCustomers: ", getCustomers());
-    console.log("w useEffect[pusta - 1 raz po mount] wyswietlam customers: ", customers);
+    // tu sie funkcja wykonuje zeby sie wyswietliła!!!
+    // console.log("w useEffect[pusta - 1 raz po mount] wyswietlam getCustomers: ", getCustomers());
+    console.log("w useEffect/po getCustomers() [pusta - 1 raz po mount] wyswietlam customers: ", customers);
   }, []);
   // ^ pusta tablica zależności oznacza, że useEffect będzie uruchomiony tylko raz po zamontowaniu
 
@@ -64,7 +65,7 @@ const CustomersList = (props) => {
 
   return (
     <div className="container">
-      {/* <h1>CustomerList component</h1> */}
+      <h1>CustomerList component</h1>
       <Example_2 customers={customers} getCustomers={getCustomers} />
       {/* <Signup customers={customers} getCustomers={getCustomers} /> */}
     </div>

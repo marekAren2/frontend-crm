@@ -88,7 +88,7 @@ export default function Example_2(props) {
   function mergeData(customers, people) {
     // Sprawdzamy, czy customers jest tablicą
     if (!Array.isArray(customers)) {
-      console.error("Error: props.customers is not an array");
+      console.warn("Error: props.customers is not an array");
       return [];
     }
 
@@ -238,7 +238,7 @@ export default function Example_2(props) {
                   <div className="containerAddress ml-0 mb-0">
                     <p
                       className="mt-1 truncate text-xs leading-5 text-gray-500"
-                      ml-
+                      ml-0
                     >
                       {person.address?.city + " ul. " + person.address?.street}
                     </p>

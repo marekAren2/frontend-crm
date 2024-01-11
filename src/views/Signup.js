@@ -1,13 +1,12 @@
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import axios from 'axios';
-import { useState } from 'react';
-import CustomersList from './CustomersList';
+import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import axios from "axios";
+import { useState } from "react";
+import CustomersList from "./CustomersList";
 // import {log} from './logger';
 // import log from '../logger';
-import Example_2 from './Example_2';
-import Print from './Print';
-
-
+import Example_2 from "./Example_2";
+import Print from "./Print";
+import './Signup.css';
 
 const Signup = (props) => {
   const [name, setName] = useState("");
@@ -16,6 +15,7 @@ const Signup = (props) => {
 
   const [errors, setErrors] = useState([]);
 
+  const [isButtonCancelClick, setIsButtonCancelClick] = useState(false);
   const handleChangeName = (e) => {
     // setName({ name: e.target.value })
     setName(e.target.value);
@@ -75,23 +75,24 @@ const Signup = (props) => {
   // do testu pozniej zastap handleButtonCancel
   const openList = () => {
     // <Customers />
-    console.log("klikniete");
-      return (
-        <div>
-          {/* <CustomersList customers={props.customers} /> */}
-          {/* <Example_2 customers={props.customers} /> */}
-          {/* Dodaj console.log, aby sprawdzić, czy funkcja openList została wywołana */}
-          {console.log("openList called")}
-          {/* Użyj komponentu CustomersList i przekazuj mu customers jako props */}
-          {<Print />}
-        </div>
-      );
+    console.log("klikniete", Date().toString());
+    setIsButtonCancelClick(true);
+    /* return (
+      <div>
+        <CustomersList customers={props.customers} />
+        //<Example_2 customers={props.customers} />
+        Dodaj console.log, aby sprawdzić, czy funkcja openList została wywołana
+        {console.log("openList called")}
+        Użyj komponentu CustomersList i przekazuj mu customers jako props
+        <Print />
+      </div>
+    ); */
   };
 
   return (
     <form action="#" onSubmit={validationForm}>
       {/* <form action="#" onSubmit={saveFirm}> */}
-      <div className="space-y-12 w-1/2">
+      <div className="space-y-12 w-3/4">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
             Customers Information
@@ -106,8 +107,10 @@ const Signup = (props) => {
                 htmlFor="firmName"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
+                {/* dlatego tu wywolywalem funkcje bo myslalem ze zadziala */}
                 {/* {openList()} */}
-                {/* Firm name * */}
+                Firm name *
+                {isButtonCancelClick && <Print /> && window.alert('uwaga') }
               </label>
               <div className="mt-2">
                 <input
